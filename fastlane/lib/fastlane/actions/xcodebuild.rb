@@ -180,17 +180,19 @@ module Fastlane
         # Formatting style
         if params && params[:output_style]
           output_style = params[:output_style]
-          UI.user_error!("Invalid output_style #{output_style}") unless [:standard, :basic].include?(output_style)
+          UI.user_error!("Invalid output_style #{output_style}") unless [:standard, :basic, :pretty].include?(output_style)
         else
-          output_style = :standard
+          output_style = :pretty
         end
 
         case output_style
         when :standard
-          xcpretty_args << '--color' unless Helper.colors_disabled?
+        xcpretty_args << '--color' unless Helper.colors_disabled?
+        when :pretty
+        xcpretty_args << '--pretty'
         when :basic
-          xcpretty_args << '--no-utf'
-        end
+        xcpretty_args << '--no-utf'
+    end
 
         if testing
           if params[:reports]
