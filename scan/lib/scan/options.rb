@@ -118,10 +118,10 @@ module Scan
         FastlaneCore::ConfigItem.new(key: :output_style,
                                      short_option: "-b",
                                      env_name: "SCAN_OUTPUT_STYLE",
-                                     description: "Define how the output should look like. Valid values are: standard, basic, rspec, or raw (disables xcpretty)",
+                                     description: "Define how the output should look like. Valid values are: standard, basic, pretty, rspec, or raw (disables xcpretty)",
                                      optional: true,
                                      verify_block: proc do |value|
-                                       UI.user_error!("Invalid output_style #{value}") unless ['standard', 'basic', 'rspec', 'raw'].include?(value)
+                                       UI.user_error!("Invalid output_style #{value}") unless ['standard', 'basic', 'pretty', 'rspec', 'raw'].include?(value)
                                      end),
         FastlaneCore::ConfigItem.new(key: :output_types,
                                      short_option: "-f",
